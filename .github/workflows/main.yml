@@ -14,10 +14,7 @@ jobs:
 
       - name: Maven test
         run: mvn test
-      
-      - name: Maven compile
-        run: mvn compile  
-      
+
       - name: Checkstyle
         run: mvn checkstyle:checkstyle
 
@@ -33,8 +30,6 @@ jobs:
         uses: warchant/setup-sonar-scanner@v7
 
       # Run sonar-scanner
-      
-
       - name: SonarQube Scan
         run: sonar-scanner
           -Dsonar.host.url=${{ secrets.SONAR_URL }}
@@ -45,8 +40,7 @@ jobs:
           -Dsonar.junit.reportsPath=target/surefire-reports/
           -Dsonar.jacoco.reportsPath=target/jacoco.exec
           -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml
-          -Dsonar.java.binaries=target/classes/
-          
+          -Dsonar.java.binaries=target/test-classes/com/visualpathit/account/controllerTest/
 
       # Check the Quality Gate status.
       - name: SonarQube Quality Gate check
